@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #333;
+    background-color: #222;
 }
 
 .main {
@@ -64,12 +64,112 @@ body {
     left: 0;
     transform: translateY(100%);
     transition-property: transform;
-    transition-duration: .5s;
+    transition-duration: .3s;
     transition-timing-function: ease-out;
     z-index: -1;
-
 }
 
 .btn-up:hover::before {
     transform: translateY(0);
 }
+
+.btn-cross::before,
+.btn-cross::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    transition: transform linear .6s;
+    z-index: -1;
+}
+
+.btn-cross::after {
+    transform: rotateX(90deg);
+}
+
+.btn-cross::before {
+    transform: rotateY(90deg);
+}
+
+.btn-cross:hover::after,
+.btn-cross:hover::before {
+    transform: rotate(0);
+}
+
+.btn-scale {
+    background-color: transparent;
+    transition: background-color .5s;
+}
+
+.btn-scale:hover {
+    color: transparent;
+    background-color: royalblue;
+}
+
+.btn-scale::before {
+    content: attr(data-content);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(5);
+    color: white;
+    background-color: royalblue;
+    opacity: 0;
+    transition: opacity .5s, transform .5s;
+}
+
+.btn-scale:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.btn-glass {
+    transition: background-color .5s;
+}
+
+.btn-glass:hover {
+    background-color: royalblue;
+    color: white;
+}
+
+.btn-glass::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color:rgb(112, 139, 221);
+    transform: rotate(45deg) translateY(800%);
+    transition: transform .5s;
+}
+
+.btn-glass:hover::before {
+    transform: rotate(45deg) translateY(-600%);
+}
+
+@media (max-width: 992px) {
+    .box-buttons {
+        flex-direction: column;
+    }
+    .box-buttons__button {
+        margin-bottom: 2rem;
+    } 
+}
+
+@media (max-width: 500px) {
+    .title {
+        font-size: 18px;
+    }
+}
+
